@@ -35,14 +35,16 @@ len(df["Pages"])
 #     # pdf.cell(w=0, h=12, txt="H|i there", align="L", ln=1, border=1)
 
 for index, row in df.iterrows():
-    print(index)
-    print(row)
 
     pdf.add_page()
     pdf.set_font(family="Times", style="B", size=24)
     pdf.set_text_color(0, 0, 254)
     pdf.cell(w=0, h=12, txt=row["Topic"], align="L", ln=1)
     pdf.line(10, 21, 200, 21)
+
+    for i in range(row["Pages"] - 1):
+        pdf.add_page()
+
 
 
 pdf.output("output.pdf")
